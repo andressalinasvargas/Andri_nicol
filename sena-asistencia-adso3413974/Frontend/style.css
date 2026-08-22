@@ -1,0 +1,439 @@
+/* ==========================================================
+   Sistema de Asistencia SENA — Ficha ADSO 3413974
+   Estilos WCAG 2.1 AA — Mobile-first
+   ========================================================== */
+
+:root {
+  --color-fondo: #ffffff;
+  --color-texto: #1a1a1a;
+  --color-primario: #00304d;   /* azul SENA oscuro, contraste alto sobre blanco */
+  --color-primario-hover: #001f33;
+  --color-acento: #39a900;     /* verde SENA */
+  --color-acento-texto: #ffffff;
+  --color-error: #b3001b;
+  --color-error-fondo: #fdeceb;
+  --color-exito: #1e6b1e;
+  --color-exito-fondo: #eaf7ea;
+  --color-borde: #4d4d4d;
+  --color-superficie: #f4f5f6;
+  --color-tarde: #7a5b00;
+  --color-tarde-fondo: #fff6e0;
+
+  --radio-base: 6px;
+  --espacio-1: 8px;
+  --espacio-2: 16px;
+  --espacio-3: 24px;
+  --espacio-4: 32px;
+
+  --fuente-base: 16px;
+  --fuente-sistema: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  --enfoque-color: #0057a3;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: var(--fuente-base);
+}
+
+body {
+  margin: 0;
+  font-family: var(--fuente-sistema);
+  background: var(--color-superficie);
+  color: var(--color-texto);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+h1, h2, h3 {
+  color: var(--color-primario);
+  line-height: 1.25;
+}
+
+/* Foco visible obligatorio para navegación por teclado (WCAG 2.4.7) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--enfoque-color);
+  outline-offset: 2px;
+}
+
+.contenedor {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: var(--espacio-3) var(--espacio-2);
+}
+
+.encabezado {
+  text-align: center;
+  padding: var(--espacio-3) var(--espacio-2);
+  background: var(--color-primario);
+  color: #ffffff;
+}
+
+.encabezado h1 {
+  color: #ffffff;
+  font-size: 1.25rem;
+  margin: 0 0 4px 0;
+}
+
+.encabezado p {
+  margin: 0;
+  font-size: 0.95rem;
+  opacity: 0.92;
+}
+
+.tarjeta {
+  background: var(--color-fondo);
+  border: 1px solid #d9dcdf;
+  border-radius: var(--radio-base);
+  padding: var(--espacio-3);
+  margin-top: var(--espacio-3);
+}
+
+.pantalla {
+  display: none;
+}
+
+.pantalla.activa {
+  display: block;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 4px;
+  font-size: 1rem;
+}
+
+.campo {
+  margin-bottom: var(--espacio-2);
+}
+
+.ayuda-campo {
+  font-size: 0.875rem;
+  color: #333333;
+  margin-top: 4px;
+}
+
+input[type="text"],
+input[type="tel"],
+select {
+  width: 100%;
+  font-size: 1rem;
+  padding: 12px;
+  border: 2px solid var(--color-borde);
+  border-radius: var(--radio-base);
+  background: #ffffff;
+  color: var(--color-texto);
+}
+
+.otp-input {
+  font-size: 1.75rem;
+  letter-spacing: 0.4em;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 48px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: var(--radio-base);
+  border: 2px solid transparent;
+  cursor: pointer;
+  padding: 12px 16px;
+}
+
+.boton-primario {
+  background: var(--color-primario);
+  color: #ffffff;
+}
+
+.boton-primario:hover,
+.boton-primario:focus-visible {
+  background: var(--color-primario-hover);
+}
+
+.boton-primario:disabled {
+  background: #8a8f94;
+  cursor: not-allowed;
+}
+
+.boton-secundario {
+  background: #ffffff;
+  color: var(--color-primario);
+  border-color: var(--color-primario);
+  margin-top: var(--espacio-1);
+}
+
+.temporizador {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espacio-1);
+  margin: var(--espacio-2) 0;
+}
+
+.temporizador-numero {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--color-primario);
+  font-variant-numeric: tabular-nums;
+}
+
+.temporizador-etiqueta {
+  font-size: 0.9rem;
+  color: #333333;
+}
+
+.barra-progreso {
+  width: 100%;
+  height: 10px;
+  background: #d9dcdf;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.barra-progreso__relleno {
+  height: 100%;
+  background: var(--color-acento);
+  transition: width 1s linear;
+}
+
+.mensaje-error,
+.mensaje-exito,
+.mensaje-tarde {
+  border-radius: var(--radio-base);
+  padding: var(--espacio-2);
+  margin-top: var(--espacio-2);
+  font-weight: 600;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.mensaje-error {
+  background: var(--color-error-fondo);
+  color: var(--color-error);
+  border: 2px solid var(--color-error);
+}
+
+.mensaje-exito {
+  background: var(--color-exito-fondo);
+  color: var(--color-exito);
+  border: 2px solid var(--color-exito);
+}
+
+.icono-estado {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+}
+
+.pantalla-exito {
+  text-align: center;
+}
+
+.pantalla-exito .icono-estado {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto var(--espacio-2) auto;
+}
+
+.detalle-lista {
+  text-align: left;
+  list-style: none;
+  padding: 0;
+  margin: var(--espacio-2) 0 0 0;
+  border-top: 1px solid #d9dcdf;
+}
+
+.detalle-lista li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #d9dcdf;
+}
+
+.detalle-lista dt,
+.detalle-lista dd {
+  margin: 0;
+}
+
+/* ===================== Panel del Instructor ===================== */
+
+.panel-instructor {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--espacio-3);
+}
+
+.panel-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--espacio-3);
+}
+
+@media (min-width: 900px) {
+  .panel-grid {
+    grid-template-columns: 380px 1fr;
+    align-items: start;
+  }
+}
+
+.qr-gigante {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #ffffff;
+  border: 3px solid var(--color-primario);
+  border-radius: var(--radio-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.otp-gigante {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-align: center;
+  color: var(--color-primario);
+  font-variant-numeric: tabular-nums;
+}
+
+table.tabla-asistencia {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+}
+
+table.tabla-asistencia caption {
+  text-align: left;
+  font-weight: 700;
+  padding-bottom: var(--espacio-1);
+}
+
+table.tabla-asistencia th,
+table.tabla-asistencia td {
+  border: 1px solid #d9dcdf;
+  padding: 10px;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+table.tabla-asistencia th {
+  background: var(--color-primario);
+  color: #ffffff;
+}
+
+.etiqueta-estado {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  border: 2px solid transparent;
+}
+
+.etiqueta-estado--asistio {
+  background: var(--color-exito-fondo);
+  color: var(--color-exito);
+  border-color: var(--color-exito);
+}
+
+.etiqueta-estado--tarde {
+  background: var(--color-tarde-fondo);
+  color: var(--color-tarde);
+  border-color: var(--color-tarde);
+}
+
+.etiqueta-estado--ausente {
+  background: var(--color-error-fondo);
+  color: var(--color-error);
+  border-color: var(--color-error);
+}
+
+.marca-editado {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-primario);
+  border: 1px solid var(--color-primario);
+  border-radius: 4px;
+  padding: 1px 6px;
+  margin-left: 6px;
+}
+
+.acciones-fila {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.boton-mini {
+  font-size: 0.8rem;
+  padding: 6px 10px;
+  min-height: 34px;
+  border-radius: 4px;
+  border: 2px solid var(--color-primario);
+  background: #ffffff;
+  color: var(--color-primario);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.boton-mini:hover,
+.boton-mini:focus-visible {
+  background: var(--color-primario);
+  color: #ffffff;
+}
+
+/* Modal de contingencia */
+.modal-fondo {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espacio-2);
+  z-index: 20;
+}
+
+.modal-fondo.activo {
+  display: flex;
+}
+
+.modal {
+  background: #ffffff;
+  border-radius: var(--radio-base);
+  padding: var(--espacio-3);
+  max-width: 420px;
+  width: 100%;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .barra-progreso__relleno {
+    transition: none;
+  }
+}
