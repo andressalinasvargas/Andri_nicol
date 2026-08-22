@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel del Instructor — Ficha ADSO 3413974</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="encabezado">
+  <h1>Panel del Instructor</h1>
+  <p>Ficha ADSO 3413974 — Checkpoint activo: <span id="etiqueta-checkpoint-activo">ninguno</span></p>
+</header>
+
+<main class="panel-instructor">
+
+  <div class="tarjeta">
+    <h2>Abrir checkpoint</h2>
+    <div class="campo">
+      <label for="tipo_checkpoint_select">Tipo de checkpoint</label>
+      <select id="tipo_checkpoint_select" style="max-width:260px;">
+        <option value="INICIO">Inicio de jornada</option>
+        <option value="RECESO">Receso</option>
+        <option value="FIN">Fin de jornada</option>
+      </select>
+    </div>
+    <button type="button" class="boton boton-primario" id="btn-abrir-checkpoint" style="max-width:260px;">
+      Abrir checkpoint
+    </button>
+    <button type="button" class="boton boton-secundario" id="btn-cerrar-checkpoint" style="max-width:260px;" disabled>
+      Cerrar checkpoint
+    </button>
+  </div>
+
+  <div class="panel-grid" style="margin-top:24px;">
+
+    <!-- Columna QR + OTP -->
+    <div>
+      <div class="tarjeta">
+        <h2>Código QR del checkpoint</h2>
+        <div class="qr-gigante" id="contenedor-qr" aria-live="polite">
+          <span id="texto-qr" style="padding:16px; text-align:center; font-size:0.85rem; word-break:break-all;">
+            Abre un checkpoint para generar el QR
+          </span>
+        </div>
+      </div>
+
+      <div class="tarjeta">
+        <h2>Código OTP vigente</h2>
+        <div class="otp-gigante" id="otp-gigante">------</div>
+        <div class="temporizador">
+          <span class="temporizador-numero" id="otp-segundos">20</span>
+          <span class="temporizador-etiqueta">segundos restantes</span>
+          <div class="barra-progreso">
+            <div class="barra-progreso__relleno" id="otp-barra" style="width:100%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna listado -->
+    <div class="tarjeta">
+      <h2>Estado de la ficha</h2>
+      <p id="resumen-conteo">0 de 0 aprendices registrados.</p>
+
+      <table class="tabla-asistencia">
+        <caption class="visually-hidden">Listado de asistencia en tiempo real</caption>
+        <thead>
+          <tr>
+            <th scope="col">Aprendiz</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Acciones manuales</th>
+          </tr>
+        </thead>
+        <tbody id="cuerpo-tabla-asistencia">
+          <tr><td colspan="3">Abre un checkpoint para ver el listado.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</main>
+
+<!-- Modal de contingencia / registro manual -->
+<div class="modal-fondo" id="modal-fondo">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="titulo-modal">
+    <h2 id="titulo-modal">Registro manual (contingencia)</h2>
+    <p id="modal-nombre-aprendiz" style="font-weight:700;">—</p>
+
+    <div class="campo">
+      <label for="modal-estado">Estado</label>
+      <select id="modal-estado">
+        <option value="ASISTIO">Asistió</option>
+        <option value="TARDE">Tarde</option>
+        <option value="AUSENTE">Ausente</option>
+      </select>
+    </div>
+
+    <div class="campo">
+      <label for="modal-motivo">Motivo de la contingencia</label>
+      <select id="modal-motivo">
+        <option value="SIN_CELULAR">No cuenta con celular</option>
+        <option value="DISCAPACIDAD">Situación de discapacidad</option>
+        <option value="FALLA_RED">Falla de red / conectividad</option>
+        <option value="OTRO">Otro</option>
+      </select>
+    </div>
+
+    <div class="campo">
+      <label for="modal-justificacion">Justificación</label>
+      <input type="text" id="modal-justificacion" placeholder="Describe brevemente la situación">
+    </div>
+
+    <button type="button" class="boton boton-primario" id="btn-guardar-modal">Guardar registro</button>
+    <button type="button" class="boton boton-secundario" id="btn-cancelar-modal">Cancelar</button>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
